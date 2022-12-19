@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Form</title>
+</head>
+<body>
+  <div id="app">
+    <!-- The Vue.js template goes here -->
+    <template>
+      <div class="login-container">
+        <form class="login-form" @submit.prevent="login">
+          <h1 class="login-form__title">Login</h1>
+          <div class="login-form__field">
+            <label for="email">Email</label>
+            <input v-model="email" type="email" id="email" required />
+          </div>
+          <div class="login-form__field">
+            <label for="password">Password</label>
+            <input v-model="password" type="password" id="password" required />
+          </div>
+          <div class="login-form__field">
+            <button type="submit" class="login-form__submit">Log in</button>
+          </div>
+        </form>
+      </div>
+    </template>
+  </div>
+
+  <!-- Include Vue.js and the script file -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="login.js"></script>
+
+  <script>
+    // Create a new Vue instance and mount it to the #app element
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          email: '',
+          password: '',
+        };
+      },
+      methods: {
+        login() {
+          // Perform login action here
+          // mporoume kankanoume use to this.email and this.password to access the values entered in the form
+        },
+      },
+    });
+  </script>
+
+    <!-- Include the CSS styles -->
+    <style>
+
+        /* Select the email and password input fields */
+        input[type="email"],
+        input[type="password"] {
+        /* Set the color to white */
+        color: white;
+        /* Set the width to be smaller */
+        width: 0%;
+        /* Set the background color to transparent */
+        background-color: transparent;
+        }
+
+        body {
+          background-color: #36393F; /* Primary background color in Discord's interface */
+        }
+    
+        .login-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+    
+        .login-form {
+            width: 300px;
+            padding: 20px;
+            border: 2px solid #7289da; /* Primary color in Discord's interface */
+            border-radius: 5px;
+        }
+    
+        .login-form__title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff; 
+        }
+
+        .login-form__field {
+          margin-bottom: 20px;
+        }
+    
+        .login-form__field label {
+          display: block;
+          margin-bottom: 10px;
+        }
+        .login-form__field label {
+        color: white;
+        }
+        .login-form {
+            background-color: transparent;
+            }
+    
+            .login-form__field input {
+            width: 278px;
+            padding: 10px;
+            border: 1px solid #99AAB5;
+            border-radius: 5px;
+        }
+    
+        .login-form__submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #7289da; /* Primary color in Discord's interface */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+      </style>
+
+</body>
+</html>
+
+
+  
+  

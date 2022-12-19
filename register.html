@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+</head>
+<body>
+  <div id="app">
+    <!-- The Vue.js template goes here -->
+    <template>
+      <div class="registration-container">
+        <form class="registration-form" @submit.prevent="register">
+          <h1 class="registration-form__title">Registration</h1>
+          <div class="registration-form__field">
+            <label for="name">Name</label>
+            <input v-model="name" type="text" id="name" required />
+          </div>
+          <div class="registration-form__field">
+            <label for="email">Email</label>
+            <input v-model="email" type="email" id="email" required />
+          </div>
+          <div class="registration-form__field">
+            <label for="password">Password</label>
+            <input v-model="password" type="password" id="password" required />
+          </div>
+          <div class="registration-form__field">
+            <button type="submit" class="registration-form__submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </template>
+  </div>
+
+  <!-- Include Vue.js and the script file -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="registration.js"></script>
+
+  <script>
+    // Create a new Vue instance and mount it to the #app element
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          name: '',
+          email: '',
+          password: '',
+        };
+      },
+      methods: {
+        register() {
+          // Perform registration action here
+          // mporoume na xrisimopoiisoume to this.name, this.email, and this.password to access the values entered in the form
+        },
+      },
+    });
+  </script>
+
+  <!-- Include the CSS styles -->
+  <style>
+    body {
+    background-color: #36393F; /* Primary background color in Discord's interface */
+    }
+
+    .registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+
+    .registration-form {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid #7289da; /* Primary color in Discord's interface */
+    border-radius: 5px;
+    background-color: transparent;
+    }
+
+    .registration-form__title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff; 
+    }
+
+    .registration-form__field {
+    margin-bottom: 20px;
+    }
+
+    .registration-form__field label {
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+    }
+
+    .registration-form__field input {
+    width: 277px; 
+    padding: 10px;
+    border: 1px solid #99AAB5; /* Secondary color in Discord's interface */
+    border-radius: 5px;
+    color: white; /* Make the text color white */
+    background-color: transparent; /* Make the background color transparent */
+    }
+
+    .registration-form__submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #7289da; /* Primary color in Discord's interface */
+    color: #fff;
+    border: none;
+    border-radius: 5px; /* paxos border*/
+    cursor: pointer;
+    }
+</style>
+</body>
+</html>
+
+
+
