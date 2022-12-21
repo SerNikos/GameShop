@@ -5,7 +5,7 @@
 </head>
 <body>
   <div id="app">
-    <!-- The Vue.js template goes here -->
+    <!-- The Vue.js template -->
     <template>
       <div class="login-container">
         <form class="login-form" @submit.prevent="login">
@@ -26,12 +26,12 @@
     </template>
   </div>
 
-  <!-- Include Vue.js and the script file -->
+  <!-- Vue.js and the script file -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="login.js"></script>
 
   <script>
-    // Create a new Vue instance and mount it to the #app element
+    // Vue instance and mount for the #app element
     new Vue({
       el: '#app',
       data() {
@@ -42,24 +42,22 @@
       },
       methods: {
         login() {
-          // Perform login action here
-          // mporoume kankanoume use to this.email and this.password to access the values entered in the form
+        
+          /to do logic here
         },
       },
     });
   </script>
 
-    <!-- Include the CSS styles -->
+    <!-- CSS -->
     <style>
 
-        /* Select the email and password input fields */
+        /* email and password input fields */
         input[type="email"],
         input[type="password"] {
-        /* Set the color to white */
+        /* The color is set to white */
         color: white;
-        /* Set the width to be smaller */
         width: 0%;
-        /* Set the background color to transparent */
         background-color: transparent;
         }
 
