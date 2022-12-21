@@ -5,7 +5,7 @@
 </head>
 <body>
   <div id="app">
-    <!-- The Vue.js template goes here -->
+    <!--Vue.js template-->
     <template>
       <div class="registration-container">
         <form class="registration-form" @submit.prevent="register">
@@ -30,12 +30,12 @@
     </template>
   </div>
 
-  <!-- Include Vue.js and the script file -->
+  <!-- Vue.js and the script file -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="registration.js"></script>
 
   <script>
-    // Create a new Vue instance and mount it to the #app element
+    // Thats the new Vue instance and mount for the #app element
     new Vue({
       el: '#app',
       data() {
@@ -47,14 +47,13 @@
       },
       methods: {
         register() {
-          // Perform registration action here
-          // mporoume na xrisimopoiisoume to this.name, this.email, and this.password to access the values entered in the form
+          // to do logic here for registration
         },
       },
     });
   </script>
 
-  <!-- Include the CSS styles -->
+  <!-- CSS apo edo kai pera gia na mi xanomaste me ta diaforetika files -->
   <style>
     body {
     background-color: #36393F; /* Primary background color in Discord's interface */
@@ -97,16 +96,16 @@
     border: 1px solid #99AAB5; /* Secondary color in Discord's interface */
     border-radius: 5px;
     color: white; /* Make the text color white */
-    background-color: transparent; /* Make the background color transparent */
+    background-color: transparent; 
     }
 
     .registration-form__submit {
     width: 100%;
     padding: 10px;
-    background-color: #7289da; /* Primary color in Discord's interface */
+    background-color: #7289da; 
     color: #fff;
     border: none;
-    border-radius: 5px; /* paxos border*/
+    border-radius: 5px;
     cursor: pointer;
     }
 </style>
