@@ -1,6 +1,6 @@
 # GameShop
 
-## This is a simple GameShop platform that resemble Steam for academical purposes of learning how to build basic CRUD apps
+## This is a simple GameShop platform that resembles Steam for academical purposes of learning how to build basic CRUD apps
 
 ### Features ->
 
@@ -9,13 +9,13 @@
 - Game Library and showcases
 - User and game ownage and management.
 
-## Front-End techonologies ->
+## Front-End techonologies
 
 - html,
 - css &
 - Vue JS
 
-## Back-End techonologies ->
+## Back-End techonologies
 
 - PHP 7.4 with composer,
 - Laravel / Lumen micro-framework for building MVC / ORM Api's,
@@ -23,7 +23,7 @@
 - auth0 JWT for authentication tokens &
 - docker for containerizing the api.
 
-## Oficial Lumen documentation ->
+## Oficial Lumen documentation
 
 Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 
