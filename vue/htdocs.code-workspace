@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../MAMP/htdocs"
+		},
+		{
+			"path": "../Weather-Station-Interface/prototype"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "prototype"
+	}
+}
