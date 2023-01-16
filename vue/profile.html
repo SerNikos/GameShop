@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile Page</title>
+</head>
+<body>
+  <div id="app">
+    <template>
+      <div class="profile-container">
+        <div class="profile-header">
+          <img class="profile-header__avatar" v-bind:src="avatar" alt="User Avatar" />
+          <h1 class="profile-header__name">{{ name }}</h1>
+        </div>
+        <div class="profile-info">
+          <p class="profile-info__email">{{ email }}</p>
+          <p class="profile-info__bio">{{ bio }}</p>
+        </div>
+        <div class="profile-footer">
+          <button class="profile-footer__edit-btn" @click="editProfile">Edit Profile</button>
+          <button class="profile-footer__logout-btn" @click="logout">Logout</button>
+        </div>
+      </div>
+    </template>
+     
+   <footer class="fixed-bottom">
+    <p>Copyright Sergis Xenos Koumanis Redi</p>
+  </footer>
+  </div>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="profile.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          name: 'Nikolaos Sergis',
+          email: 'ser.nikos3000@gmail.com',
+          bio: 'I have a dream, that i will pass eidika themata with 10.',
+          avatar: 'https://i.pravatar.cc/300',
+        };
+      },
+      methods: {
+    editProfile() {
+       // this part redirects the user to the edit profile page TODO SerNikos!!!
+        window.location.href = "edit-profile.html";
+    },
+    logout() {
+        // We use this function to clear any authentication tokens or user data from the browser's local storage
+        localStorage.removeItem("access_token");
+        // And then it redirects the user to our login page
+        window.location.href = "loginForm.html";
+    },
+      },
+    });
+  </script>
+
+  <style>
+    body {
+      background-color: #36393F;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-header__avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+
+    .profile-header__name {
+      margin-left: 20px;
+      font-size: 2em;
+      color: white;
+    }
+
+    .profile-info {
+      width: 300px;
+      text-align: center;
+    }
+
+    .profile-info__email {
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .profile-info__bio {
+      color: white;
+    }
+
+    .profile-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .profile-footer__logout-btn {
+    padding: 10px;
+    background-color: #7289da; /* Primary color in Discord's interface */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for the fixed bottom footer */
+.fixed-bottom {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #36393F;
+      color: white;
+      text-align: center;
+    }
+</style>
+
+</body>
+</html>
