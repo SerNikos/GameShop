@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Profile</title>
+</head>
+<body>
+    <header>
+         <!-- Top menu -->
+     <div class="menu">
+        <nav>
+          <a href="#home">Homepage</a>
+          <a href="#profile">Profile</a>
+          <a href="#favorites">Favorites</a>
+          <!-- Logout button -->
+          <div class="top-right">
+            <button id="logout-button" @click="logout">Log Out</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+  <div id="app">
+    <template>
+      <div class="edit-profile-container">
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" v-model="name" />
+          <br />
+          <label for="email">Email:</label>
+          <input type="email" id="email" v-model="email" />
+          <br />
+          <label for="bio">Bio:</label>
+          <textarea id="bio" v-model="bio"></textarea>
+          <br />
+          <label for="avatar">Avatar:</label>
+          <input type="text" id="avatar" v-model="avatar" />
+          <br />
+          <button @click="updateProfile">Save Changes</button>
+        </form>
+      </div>
+    </template>
+    
+    <footer class="fixed-bottom">
+      <p>Copyright Sergis Xenos Koumanis Redi</p>
+    </footer>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="edit-profile.js"></script>
+  
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          name: 'Nikolaos Sergis',
+          email: 'ser.nikos3000@gmail.com',
+          bio: 'I have a dream, that i will pass eidika themata with 10.',
+          avatar: 'https://i.pravatar.cc/300',
+        };
+      },
+      methods: {
+
+    logout() {
+        // Remove the access token from the local storage
+        localStorage.removeItem("access_token");
+        // Redirect the user to the login page
+        window.location.href = "loginForm.html";
+    },
+        
+    updateProfile() {
+        // Prepare the user's data to be sent to the server
+        let data = {
+            name: this.name,
+            email: this.email,
+            bio: this.bio,
+            avatar: this.avatar
+        }
+        // using fetch API we sending a PUT request to the server with the updated data
+        fetch('https://our-server.com/update-profile', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("access_token")}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // If the request is successful, show a success message and redirect the user back to the profile page
+            if(data.status === 'success') {
+                alert('Profile updated!');
+                window.location.href = "profile.html";
+            } else {
+                // If there's an error, show an error message
+                alert(data.message);
+            }
+        })
+        .catch(error => console.error(error));
+    },
+      },
+    });
+  </script>
+  
+  <style>
+    body {
+      background-color: #36393F;
+    }
+    .edit-profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 100px 0; /* This adds a margin of 60px to the top and bottom of the container */
+    }
+    
+    form {
+      width: 300px;
+      text-align: left;
+    }
+    label {
+      color: white;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: none;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+      color: #36393F;
+    }
+    
+    button {
+      width: 100%;
+      background-color: #7289da;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    /* Style for the fixed bottom footer */
+    .fixed-bottom {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #36393F;
+      color: white;
+      text-align: center;
+    }
+
+    /* Style for the top menu */
+    .menu {
+      background-color: #2C2F33;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+
+    .menu nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 50px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px;
+    }
+  </style>
+
+</body>
+</html>
