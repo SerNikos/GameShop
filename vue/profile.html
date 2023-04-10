@@ -1,132 +1,201 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Profile Page</title>
-</head>
-<body>
-  <div id="app">
-    <template>
-      <div class="profile-container">
-        <div class="profile-header">
-          <img class="profile-header__avatar" v-bind:src="avatar" alt="User Avatar" />
-          <h1 class="profile-header__name">{{ name }}</h1>
-        </div>
-        <div class="profile-info">
-          <p class="profile-info__email">{{ email }}</p>
-          <p class="profile-info__bio">{{ bio }}</p>
-        </div>
-        <div class="profile-footer">
-          <button class="profile-footer__edit-btn" @click="editProfile">Edit Profile</button>
-          <button class="profile-footer__logout-btn" @click="logout">Logout</button>
-        </div>
+  <head>
+    <title>Profile Page</title>
+  </head>
+  <body>
+    <div id="app">
+    <header>
+      <!-- Top menu -->
+      <div class="menu">
+        <nav>
+          <a href="homepage.html">Homepage</a>
+          <a href="profile.html">Profile</a>
+          <a href="favourites.html">Favorites</a>
+          <!-- Logout button -->
+          <div class="top-right">
+            <button id="logout-button" @click="logout">Log Out</button>
+          </div>
+        </nav>
       </div>
-    </template>
-     
-   <footer class="fixed-bottom">
-    <p>Copyright Sergis Xenos Koumanis Redi</p>
-  </footer>
-  </div>
-  
+    </header>
+    
+      <template name="profile">
+        <div class="profile-container">
+          <div class="profile-header">
+            <img
+              class="profile-header__avatar"
+              v-bind:src="avatar"
+              alt="User Avatar"
+            />
+            <h1 class="profile-header__name">{{ name }}</h1>
+          </div>
+          <div class="profile-info">
+            <p class="profile-info__email">Email: {{ email }}</p>
+            <p class="profile-info__bio">Bio: {{ bio }}</p>
+          </div>
+          <div class="profile-footer">
+            <button class="profile-footer__edit-btn" @click="editProfile">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+      </template>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="profile.js"></script>
+      <footer class="fixed-bottom">
+        <p>Copyright Sergis Xenos Koumanis Redi</p>
+      </footer>
+    </div>
 
-  <script>
-    new Vue({
-      el: '#app',
-      data() {
-        return {
-          name: 'Nikolaos Sergis',
-          email: 'ser.nikos3000@gmail.com',
-          bio: 'I have a dream, that i will pass eidika themata with 10.',
-          avatar: 'https://i.pravatar.cc/300',
-        };
-      },
-      methods: {
-    editProfile() {
-       // this part redirects the user to the edit profile page TODO SerNikos!!!
-        window.location.href = "edit-profile.html";
-    },
-    logout() {
-        // We use this function to clear any authentication tokens or user data from the browser's local storage
-        localStorage.removeItem("access_token");
-        // And then it redirects the user to our login page
-        window.location.href = "loginForm.html";
-    },
-      },
-    });
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="profile.js"></script>
 
-  <style>
-    body {
-      background-color: #36393F;
-    }
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            name: "Nikolaos Sergis",
+            email: "ser.nikos3000@gmail.com",
+            bio: "I have a dream, that i will pass eidika themata with 10.",
+            avatar: "https://i.pravatar.cc/300",
+          };
+        },
+        methods: {
+          editProfile() {
+            // this part redirects the user to the edit profile page TODO SerNikos!!!
+            window.location.href = "edit-profile.html";
+          },
+          logout() {
+            // We use this function to clear any authentication tokens or user data from the browser's local storage
+            localStorage.removeItem("access_token");
+            // And then it redirects the user to our login page
+            window.location.href = "loginForm.html";
+          },
+        },
+      });
+    </script>
 
-    .profile-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
+    <style>
+      body {
+        background-color: #36393f;
+        color: #dcdfe4;
+      }
 
-    .profile-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+      .profile-header {
+        margin-top: 40px;
+      }
+      button {
+        width: 100%;
+        background-color: #7289da;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-    .profile-header__avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-    }
+      .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
 
-    .profile-header__name {
-      margin-left: 20px;
-      font-size: 2em;
-      color: white;
-    }
+      .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
 
-    .profile-info {
-      width: 300px;
-      text-align: center;
-    }
+      .profile-header__avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      }
 
-    .profile-info__email {
-      margin-bottom: 10px;
-      color: white;
-    }
+      .profile-header__name {
+        margin-left: 20px;
+        font-size: 2em;
+        color: white;
+        border-bottom: 1px solid white;
+      }
 
-    .profile-info__bio {
-      color: white;
-    }
+      .profile-info {
+        width: 300px;
+        text-align: center;
+        border-radius: 20%;
+        border: 1px solid white;
+        padding: 20px;
+      }
 
-    .profile-footer {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
+      .profile-info__email {
+        margin-bottom: 10px;
+        color: white;
+      }
 
-    .profile-footer__logout-btn {
-    padding: 10px;
-    background-color: #7289da; /* Primary color in Discord's interface */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+      .profile-info__bio {
+        color: white;
+      }
 
-/* Style for the fixed bottom footer */
-.fixed-bottom {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background-color: #36393F;
-      color: white;
-      text-align: center;
-    }
-</style>
+      .profile-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
 
-</body>
+      .profile-footer__logout-btn {
+        padding: 10px;
+        background-color: #7289da; /* Primary color in Discord's interface */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* Style for the fixed bottom footer */
+      .fixed-bottom {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #36393f;
+        color: white;
+        text-align: center;
+      }
+      /* Style for the top menu */
+      .menu {
+        background-color: #2c2f33;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .menu nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 50px;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+      }
+      /*For extra grade stuff*/
+      .menu nav a:hover,
+      #logout-button:hover,
+      .profile-footer__edit-btn:hover {
+        background-color: #5b6f92;
+        cursor: pointer;
+        transform: scale(0.9);
+        transition: transform 0.2s ease-in-out;
+      }
+    </style>
+  </body>
 </html>

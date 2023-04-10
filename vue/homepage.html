@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home page</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <header>
+      <!-- Top menu -->
+      <div class="menu">
+        <nav>
+          <a href="homepage.html">Homepage</a>
+          <a href="profile.html">Profile</a>
+          <a href="favourites.html">Favorites</a>
+          <!-- Logout button -->
+          <div class="top-right">
+            <button id="logout-button" @click="logout">Log Out</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <!-- Game grid -->
+      <div class="game-grid" id="nikos">
+        <!-- Game card -->
+        <div class="game-card" v-for="game in games">
+          <!-- Game image -->
+          <img :src="game.image" alt="Game image" />
+          <!-- Game name -->
+          <h3>{{ game.name }}</h3>
+          <!-- Game description -->
+          <p>{{ game.description }}</p>
+          <!-- Add button container -->
+        <div class="add-button-container">
+            <button @click="addToFavourites(index)">Add to favourites</button>
+        </div>
+        </div>
+        
+      </div>
+    </main>
+
+    <!-- Fixed bottom footer -->
+    <footer class="fixed-bottom">
+      <p>Copyright Sergis Xenos Koumanis Redi</p>
+    </footer>
+
+    <!-- Vue.js script -->
+    <script>
+      // Create a new Vue.js app
+      const app = new Vue({
+        // Mount the app to the 'main' element
+        el: "main",
+        // Define the data for the app
+        data: {
+          games: [
+            {
+              name: "Resident Evil 4",
+              image: "photos/resident_evil_4.png",
+              description: "Our favourite zompie game now with better graphics",
+            },
+            {
+              name: "Risk",
+              image: "photos/Rirsk.png",
+              description:
+                "The classic board game in a digital version, Will you risk it all?",
+            },
+            {
+              name: "Selini",
+              image: "photos/Selini.png",
+              description:
+                "A platformer with outstanding visuals made in Greece!",
+            },
+            {
+              name: "Swordsman",
+              image: "photos/Swordsman.png",
+              description: "The most realistic sword vr game ever created!",
+            },
+            {
+              name: "Fortnite",
+              image: "photos/fortnite.png",
+              description:
+                "One of the most popular battle royale games of the modern era!",
+            },
+            {
+              name: "Fall Guys",
+              image: "photos/fall_guys.png",
+              description:
+                "Fall Guys is like a playground for grown-ups – a place where you can let loose, have fun, and maybe even snag a crown or two along the way!",
+            },
+
+            {
+              name: "The Wolf Among Us",
+              image: "photos/WolfAmongUs.png",
+              description:
+                "A game in which you play as Bigby Wolf, a sheriff in a world where fairy tales are real and the characters are not always what they seem.",
+            },
+
+            {
+              name: "Plants vs Zombies",
+              image: "photos/platsvszompies.png",
+              description:
+                "Plants vs. Zombies is a tower defense video game developed and originally published by PopCap Games for Microsoft Windows.",
+            },
+            
+          ],
+        },
+
+        methods: {
+          logout() {
+            alert("You logged Out!");
+            // Remove the access token from the local storage
+            localStorage.removeItem("access_token");
+            // Redirect the user to the login page
+            window.location.href = "loginForm.html";
+          },
+          addToFavourites(index) {
+            alert("Game added to favourites!");
+           
+           /* psudo code*/
+            if (!this.favourites.includes(index)) {
+            this.favourites.push(index);
+            }
+            },
+        },
+      });
+    </script>
+    <style>
+      img {
+        float: left;
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      body {
+        background-color: #36393f;
+        color: #dcdfe4;
+      }
+
+      .profile-header {
+        margin-top: 40px;
+      }
+
+      button {
+        width: 100%;
+        background-color: #7289da;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .favourites-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+      /* Style for the top right logout button */
+      .top-right {
+        float: right;
+      }
+
+      #logout-button {
+        background-color: #7289da;
+        color: white;
+        border: none;
+      }
+
+      /* Style for the top menu */
+      .menu {
+        background-color: #2c2f33;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .menu nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 50px;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+      }
+
+      /* Style for the game grid */
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* for responsive ui, allows the grid to adjust to the screen size and ensure that the cards are always a minimum width of 250px.*/
+        grid-gap: 20px;
+        justify-content: center;
+        margin: 50px;
+      }
+
+      /* Style for the game cards */
+      .game-card {
+        background-color: #36393f;
+        border: 1px solid #dcdfe4;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .game-card img {
+        width: 100%;
+      }
+
+      .game-card h3 {
+        font-size: 22px;
+        margin: 10px;
+      }
+
+      .game-card p {
+        font-size: 16px;
+        margin: 10px;
+      }
+
+      /* Style for the fixed bottom footer */
+      .fixed-bottom {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #36393f;
+        color: white;
+        text-align: center;
+      }
+
+      /*For extra grade stuff*/
+      .menu nav a:hover,
+      #logout-button:hover,
+      .game-card:hover {
+        background-color: #5b6f92;
+        cursor: pointer;
+        transform: scale(0.9);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      /* this is a new hover rule for the game-card to override the cursor and become hand only in the button */
+      .game-card:hover {
+          cursor: default;
+        }
+    </style>
+  </body>
+</html>

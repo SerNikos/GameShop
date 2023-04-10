@@ -74,13 +74,13 @@
         },
         methods: {
           register() {
-		  // Validate user input
-			if (this.email === '' || this.password === '') {
-			  alert('Please fill in all required fields.');
-			  return;
-			}
-            <!-- to do logic here for registration -->
-			window.location.href = '/profile.html'
+          // Validate user input
+          if (this.email === '' || this.password === '') {
+            alert('Please fill in all required fields.');
+            return;
+          }
+          /*we redirect to the homepage*/
+            window.location.href = "homepage.html";
           },
         },
       });

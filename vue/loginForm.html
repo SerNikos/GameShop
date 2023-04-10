@@ -1,135 +1,166 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Login Form</title>
-</head>
-<body>
-  <div id="app">
-    <!-- The Vue.js template -->
-    <template>
-      <div class="login-container">
-        <form class="login-form" @submit.prevent="login">
-          <h1 class="login-form__title">Login</h1>
-          <div class="login-form__field">
-            <label for="email">Email</label>
-            <input v-model="email" type="email" id="email" required />
-          </div>
-          <div class="login-form__field">
-            <label for="password">Password</label>
-            <input v-model="password" type="password" id="password" required />
-          </div>
-          <div class="login-form__field">
-            <button type="submit" class="login-form__submit">Log in</button>
-          </div>
-        </form>
-      </div>
-    </template>
-     <!-- Fixed bottom footer -->
-   <footer class="fixed-bottom">
-    <p>Copyright Sergis Xenos Koumanis Redi</p>
-  </footer>
-  </div>
+  <head>
+    <title>Login Form</title>
+  </head>
+  <body>
+    <div id="app">
 
-  <!-- Vue.js and the script file -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="login.js"></script>
+        <!-- Log In stuff -->
+        <div class="login-container">
+          <form class="login-form" @submit.prevent="login">
+            <h1 class="login-form__title">Login</h1>
+            <div class="login-form__field">
+              <label for="email">Email</label>
+              <input v-model="email" type="email" id="email" required />
+            </div>
+            <div class="login-form__field">
+              <label for="password">Password</label>
+              <input
+                v-model="password"
+                type="password"
+                id="password"
+                required
+              />
+            </div>
+            <div class="login-form__field">
+              <button type="submit" class="login-form__submit">Log in</button>
+            </div>
+          </form>
+        </div>
 
-  <script>
-    // Vue instance and mount for the #app element
-    new Vue({
-      el: '#app',
-      data() {
-        return {
-          email: '',
-          password: '',
-        };
-      },
-      methods: {
-        login() {
-        
-          <!--to do logic here-->
+      <!-- Fixed bottom footer -->
+      <footer class="fixed-bottom">
+        <p>Copyright Sergis Xenos Koumanis Redi</p>
+      </footer>
+    </div>
+
+    <!-- Vue.js and the script file -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="login.js"></script>
+
+    <script>
+      // Vue instance and mount for the #app element
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            email: "",
+            password: "",
+          };
         },
-      },
-    });
-  </script>
+        methods: {
+          async login() {
+
+          /*
+          //we create the request body with the user's email and password
+          const requestBody = {
+            email: this.email,
+            password: this.password
+          };
+          
+          // we send the POST request to the 'vasilis' server
+          const response = await fetch('https://vasilisServer.com/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+          });
+          
+          // we parse the response body as JSON
+          const responseBody = await response.json();
+          
+          // we check if the response indicates success or failure
+          if (response.ok) {
+            // login successful, redirect to homepage
+            window.location.href = "homepage.html";
+          } else {
+            // login failed, display error message to user
+            alert(responseBody.error);
+          }*/
+
+          window.location.href = "homepage.html";
+
+        }
+        },
+      });
+    </script>
 
     <!-- CSS -->
     <style>
-
-        /* email and password input fields for the login*/
-        input[type="email"],
-        input[type="password"] {
-        
+      /* email and password input fields for the login*/
+      input[type="email"],
+      input[type="password"] {
         color: white;
         width: 0%;
         background-color: transparent;
-        }
+      }
 
-        body {
-          background-color: #36393F; /* Primary background color in Discord's interface */
-        }
-    
-        .login-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-        }
-    
-        .login-form {
-            width: 300px;
-            padding: 20px;
-            border: 2px solid #7289da; /* Primary color in Discord's interface */
-            border-radius: 5px;
-        }
-    
-        .login-form__title {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffffff; 
-        }
+      body {
+        background-color: #36393f; /* Primary background color in Discord's interface */
+      }
 
-        .login-form__field {
-          margin-bottom: 20px;
-        }
-    
-        .login-form__field label {
-          display: block;
-          margin-bottom: 10px;
-        }
-        .login-form__field label {
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .login-form {
+        width: 300px;
+        padding: 20px;
+        border: 2px solid #7289da; /* Primary color in Discord's interface */
+        border-radius: 5px;
+      }
+
+      .login-form__title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffffff;
+      }
+
+      .login-form__field {
+        margin-bottom: 20px;
+      }
+
+      .login-form__field label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      .login-form__field label {
         color: white;
-        }
-        .login-form {
-            background-color: transparent;
-            }
-    
-            .login-form__field input {
-            width: 278px;
-            padding: 10px;
-            border: 1px solid #99AAB5;
-            border-radius: 5px;
-        }
-    
-        .login-form__submit {
+      }
+      .login-form {
+        background-color: transparent;
+      }
+
+      .login-form__field input {
+        width: 278px;
+        padding: 10px;
+        border: 1px solid #99aab5;
+        border-radius: 5px;
+      }
+
+      .login-form__submit {
         width: 100%;
         padding: 10px;
         background-color: #7289da; /* Primary color in Discord's interface */
         color: #fff;
         border: none;
         border-radius: 5px;
-        cursor: pointer; 
-    }
-    .fixed-bottom {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background-color: #36393F;
-      color: white;
-      text-align: center;
-    }
-      </style>
-
-</body>
+        cursor: pointer;
+      }
+      .fixed-bottom {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #36393f;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </body>
 </html>
