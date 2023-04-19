@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    
+
     public function showAllGames()
     {
         return response()->json(Game::all());
@@ -27,7 +27,7 @@ class GameController extends Controller
             'price' => 'required',
             'platform' => 'required',
             'creator' => 'required',
-            
+
         ]);
 
         $Game = Game::create($request->all());
