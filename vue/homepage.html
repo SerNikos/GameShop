@@ -6,6 +6,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
+    <div id="mainHomepage">
+    <div class="mainHomepage">
     <header>
       <!-- Top menu -->
       <div class="menu">
@@ -36,21 +38,21 @@
             <button @click="addToFavourites(index)">Add to favourites</button>
         </div>
         </div>
-        
       </div>
     </main>
 
     <!-- Fixed bottom footer -->
     <footer class="fixed-bottom">
-      <p>Copyright Sergis Xenos Koumanis Redi</p>
+      <p>&copy; Sergis Xenos Koumanis Redi</p>
     </footer>
-
+  </div>
+  </div>
     <!-- Vue.js script -->
     <script>
       // Create a new Vue.js app
       const app = new Vue({
         // Mount the app to the 'main' element
-        el: "main",
+        el: "#mainHomepage",
         // Define the data for the app
         data: {
           games: [
