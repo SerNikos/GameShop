@@ -7,46 +7,48 @@
   </head>
   <body>
     <div id="mainHomepage">
-    <div class="mainHomepage">
-    <header>
-      <!-- Top menu -->
-      <div class="menu">
-        <nav>
-          <a href="homepage.html">Homepage</a>
-          <a href="profile.html">Profile</a>
-          <a href="favourites.html">Favorites</a>
-          <!-- Logout button -->
-          <div class="top-right">
-            <button id="logout-button" @click="logout">Log Out</button>
+      <div class="mainHomepage">
+        <header>
+          <!-- Top menu -->
+          <div class="menu">
+            <nav>
+              <a href="homepage.html">Homepage</a>
+              <a href="profile.html">Profile</a>
+              <a href="favourites.html">Favorites</a>
+              <!-- Logout button -->
+              <div class="top-right">
+                <button id="logout-button" @click="logout">Log Out</button>
+              </div>
+            </nav>
           </div>
-        </nav>
-      </div>
-    </header>
-    <main>
-      <!-- Game grid -->
-      <div class="game-grid" id="nikos">
-        <!-- Game card -->
-        <div class="game-card" v-for="game in games">
-          <!-- Game image -->
-          <img :src="game.image" alt="Game image" />
-          <!-- Game name -->
-          <h3>{{ game.name }}</h3>
-          <!-- Game description -->
-          <p>{{ game.description }}</p>
-          <!-- Add button container -->
-        <div class="add-button-container">
-            <button @click="addToFavourites(index)">Add to favourites</button>
-        </div>
-        </div>
-      </div>
-    </main>
+        </header>
+        <main>
+          <!-- Game grid -->
+          <div class="game-grid" id="nikos">
+            <!-- Game card -->
+            <div class="game-card" v-for="game in games">
+              <!-- Game image -->
+              <img :src="game.image" alt="Game image" />
+              <!-- Game name -->
+              <h3>{{ game.name }}</h3>
+              <!-- Game description -->
+              <p>{{ game.description }}</p>
+              <!-- Add button container -->
+              <div class="add-button-container">
+                <button @click="addToFavourites(index)">
+                  Add to favourites
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
 
-    <!-- Fixed bottom footer -->
-    <footer class="fixed-bottom">
-      <p>&copy; Sergis Xenos Koumanis Redi</p>
-    </footer>
-  </div>
-  </div>
+        <!-- Fixed bottom footer -->
+        <footer class="fixed-bottom">
+          <p>&copy; Sergis Xenos Koumanis Redi</p>
+        </footer>
+      </div>
+    </div>
     <!-- Vue.js script -->
     <script>
       // Create a new Vue.js app
@@ -104,7 +106,6 @@
               description:
                 "Plants vs. Zombies is a tower defense video game developed and originally published by PopCap Games for Microsoft Windows.",
             },
-            
           ],
         },
 
@@ -118,12 +119,12 @@
           },
           addToFavourites(index) {
             alert("Game added to favourites!");
-           
-           /* psudo code*/
+
+            /* psudo code*/
             if (!this.favourites.includes(index)) {
-            this.favourites.push(index);
+              this.favourites.push(index);
             }
-            },
+          },
         },
       });
     </script>
@@ -198,7 +199,10 @@
       /* Style for the game grid */
       .game-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* for responsive ui, allows the grid to adjust to the screen size and ensure that the cards are always a minimum width of 250px.*/
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(250px, 1fr)
+        ); /* for responsive ui, allows the grid to adjust to the screen size and ensure that the cards are always a minimum width of 250px.*/
         grid-gap: 20px;
         justify-content: center;
         margin: 50px;
@@ -250,8 +254,8 @@
 
       /* this is a new hover rule for the game-card to override the cursor and become hand only in the button */
       .game-card:hover {
-          cursor: default;
-        }
+        cursor: default;
+      }
     </style>
   </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Edit Profile</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
     <div id="app">
@@ -33,10 +33,12 @@
             <label for="email">Email:</label>
             <input type="text" id="email" v-model="email" />
             <br />
-            <label for="location">Location:</label>
-            <input type="text" id="location" v-model="location" />
+            <label for="bio">Bio:</label>
+            <input type="text" id="bio" v-model="bio" />
             <br />
-            <button class="save-changes-btn" @click="updateProfile">Save Changes</button>
+            <button class="save-changes-btn" @click="updateProfile">
+              Save Changes
+            </button>
           </form>
         </div>
       </template>
@@ -46,8 +48,6 @@
       </footer>
     </div>
 
-	
-
     <script>
       new Vue({
         el: "#app",
@@ -56,7 +56,6 @@
             firstName: "",
             lastName: "",
             email: "",
-            location: "",
             bio: "",
           };
         },
@@ -68,8 +67,6 @@
             // Fetch the user's profile data from the server and update the Vue instance data
           },
           logout() {
-            // Remove the access token from the local storage
-            localStorage.removeItem("access_token");
             // Redirect the user to the login page
             window.location.href = "loginForm.html";
           },
@@ -79,122 +76,118 @@
             let data = {
               firstName: this.firstName,
               lastName: this.lastName,
-              location: this.location,
+              email: this.email,
+              bio: this.bio,
             };
             alert("Nice! Profile updated!");
             // using fetch API we sending a PUT request to the server with the updated data
-            fetch("https://localhost:8080", {
+            fetch("http://localhost:8080", {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
               },
               body: JSON.stringify(data),
             })
-              .then((response) => response.json())
-			.then((data) => {
-			// If the request is successful, show a success message and redirect the user back to the profile page
-			if (data.status === "success") {
-			alert("Profile updated!");
-			window.location.href = "profile.html";
-			} else {
-			// If there's an error, show an error message
-			alert(data.message);
-			}
-			})
-			.catch((error) => console.error(error));
-			},
-			},
-			});
-	</script>
-	<style>
-		  body {
-			background-color: #36393f;
-		  }
-		  .edit-profile-container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			padding: 20px;
-			margin: 100px 0; /* This adds a margin of 60px to the top and bottom of the container */
-		  }
+              .then((response) => {
+                if (response.ok) {
+                  alert("Profile updated!");
+                } else {
+                  alert("Failed to update profile.");
+                }
+              })
+              .catch((error) => console.error(error));
+          },
+        },
+      });
+    </script>
+    <style>
+      body {
+        background-color: #36393f;
+      }
+      .edit-profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        margin: 100px 0; /* This adds a margin of 60px to the top and bottom of the container */
+      }
 
-		  form {
-			width: 300px;
-			text-align: left;
-		  }
-		  label {
-			color: white;
-		  }
+      form {
+        width: 300px;
+        text-align: left;
+      }
+      label {
+        color: white;
+      }
 
-		  input[type="text"],
-		  input[type="email"],
-		  textarea {
-			width: 100%;
-			padding: 12px 20px;
-			margin: 8px 0;
-			box-sizing: border-box;
-			border: none;
-			border-radius: 4px;
-			background-color: #f8f8f8;
-			color: #36393f;
-		  }
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        color: #36393f;
+      }
 
-		  button {
-			width: 100%;
-			background-color: #7289da;
-			color: white;
-			padding: 14px 20px;
-			margin: 8px 0;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		  }
+      button {
+        width: 100%;
+        background-color: #7289da;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-		  /* Style for the fixed bottom footer */
-		  .fixed-bottom {
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			background-color: #36393f;
-			color: white;
-			text-align: center;
-		  }
+      /* Style for the fixed bottom footer */
+      .fixed-bottom {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #36393f;
+        color: white;
+        text-align: center;
+      }
 
-		  /* Style for the top menu */
-		  .menu {
-			background-color: #2c2f33;
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			z-index: 1;
-		  }
+      /* Style for the top menu */
+      .menu {
+        background-color: #2c2f33;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
 
-		  .menu nav {
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			height: 50px;
-		  }
+      .menu nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 50px;
+      }
 
-		  .menu a {
-			color: white;
-			text-decoration: none;
-			font-size: 18px;
-			padding: 10px;
-		  }
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+      }
 
-		   /*For extra grade stuff*/
-		   .save-changes-btn:hover,
-		   #logout-button:hover,
-		   .menu nav a:hover {
-			background-color: #5b6f92;
-			cursor: pointer;
-			transform: scale(0.9);
-			transition: transform 0.2s ease-in-out;
-		  }
-	</style>
+      /*For extra grade stuff*/
+      .save-changes-btn:hover,
+      #logout-button:hover,
+      .menu nav a:hover {
+        background-color: #5b6f92;
+        cursor: pointer;
+        transform: scale(0.9);
+        transition: transform 0.2s ease-in-out;
+      }
+    </style>
   </body>
 </html>
