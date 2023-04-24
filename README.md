@@ -7,23 +7,32 @@
 - Login/Register page
 - User profile like any social media platform
 - Game Library and showcases
-- User and game ownage and management.
+- User and game management.
 
-## Front-End techonologies
+### How to setup the app ->
+
+1. Have a mariadb/mysql and php7.4 with composer on your platform
+2. Create a `.env` file with the `.env.example`
+3. Run `composer update` (linux) in the ./api folder
+4. Run `php artisan migrate` (linux) in the ./api folder
+5. Start a php development server on localhost:8080 linux-> `php -S localhost:8080 -t ./public` inside the /api folder
+6. Start a basic server (for example apache or liveServer) for the Front End.
+7. Test the app.
+
+## Front-End technologies
 
 - html,
 - css &
 - Vue JS
 
-## Back-End techonologies
+## Back-End technologies
 
 - PHP 7.4 with composer,
-- Laravel / Lumen micro-framework for building MVC / ORM Api's,
+- Laravel / Lumen micro-framework for building MVC / ORM Api,
 - Latest MariaDB version,
 - auth0 JWT for authentication tokens &
-- docker for containerizing the api.
 
-## Oficial Lumen documentation
+## Official Lumen documentation
 
 Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 

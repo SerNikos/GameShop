@@ -43,7 +43,7 @@
       </div>
 
       <footer class="fixed-bottom">
-        <p>&copy; Sergis Xenos Koumanis Redi</p>
+        <p>&copy; Sergis Xenos Koumanis Kapo</p>
       </footer>
     </div>
 
@@ -64,7 +64,7 @@
         },
         methods: {
           fetchProfileData() {
-            // Fetch the user's profile data from the server and update the Vue instance data
+            // not yet implemented
           },
           logout() {
             // Redirect the user to the login page
@@ -72,7 +72,7 @@
           },
 
           updateProfile() {
-            // Prepare the user's data to be sent to the server
+            // here fetchProfileData() should run but its not implemented so we hard code it 
             const data = {
               firstName: this.firstName,
               lastName: this.lastName,
@@ -80,9 +80,8 @@
               bio: this.bio,
               password: this.password
             };
-            // alert("Nice! Profile updated!");
             // using fetch API we sending a PUT request to the server with the updated data
-            fetch("http://localhost:8080/api/users/1", {
+            fetch("http://localhost:8080/api/users/1", {  // Hardcoded to user 1 to test the function
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
