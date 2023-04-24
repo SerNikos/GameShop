@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    
+
     public function showAllUsers()
     {
         return response()->json(User::all());
@@ -22,12 +22,11 @@ class UserController extends Controller
     {
         $this->validate($request, [
 
-            'username' => 'required',
-            'password' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'firstName' => 'required',
+            'lastName' => 'required',
             'location' => 'required|alpha',
-            'email' => 'required|email|unique:users'
+            'bio',
+            'password' => 'required',
         ]);
 
         $user = User::create($request->all());

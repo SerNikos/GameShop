@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model
+class Game extends Model
 {
 
     /**
@@ -18,7 +18,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'firstName', 'lastName', 'location', 'bio', 'password'
+        'title', 'genre', 'price', 'platform', 'creator'
     ];
 
     /**
