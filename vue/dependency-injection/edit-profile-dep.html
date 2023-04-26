@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      body {
+        background-color: #36393f;
+      }
+
+      /* Style for the top menu */
+      .menu {
+        background-color: #2c2f33;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .menu nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 50px;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+      }
+
+      /* Style for the fixed bottom footer */
+      .fixed-bottom {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #36393f;
+        color: white;
+        text-align: center;
+      }
+
+      /* Center the form and set its width */
+      #edit-profile-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(
+          100vh - 50px - 50px
+        ); /* Account for menu and footer height */
+      }
+
+      form {
+        width: 300px;
+        text-align: left;
+      }
+
+      label {
+        color: white;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        color: #36393f;
+      }
+
+      button {
+        width: 100%;
+        background-color: #7289da;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Hover styles for buttons and links */
+      .save-changes-btn:hover,
+      #logout-button:hover,
+      .menu nav a:hover {
+        background-color: #5b6f92;
+        cursor: pointer;
+        transform: scale(0.9);
+        transition: transform 0.2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <!-- Top menu -->
+        <div class="menu">
+          <nav>
+            <a href="/vue/homepage.html">Homepage</a>
+            <a href="/vue/profile.html">Profile</a>
+            <a href="/vue/favourites.html">Favorites</a>
+            <!-- Logout button -->
+            <div class="top-right">
+              <button id="logout-button" @click="logout">Log Out</button>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <div id="edit-profile-container">
+        <form @submit.prevent="updateProfile">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" v-model="firstName" />
+          <br />
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" v-model="lastName" />
+          <br />
+          <label for="location">Location:</label>
+          <input type="text" id="location" v-model="location" />
+          <br />
+          <label for="bio">Bio:</label>
+          <input type="text" id="bio" v-model="bio" />
+          <br />
+          <label for="password">Password:</label>
+          <input type="text" id="password" v-model="password" />
+          <br />
+          <button type="submit" class="save-changes-btn">Update Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import ProfileService from "./profile-service.js";
+      export default {
+        inject: ["profileService"],
+        data() {
+          return {
+            firstName: "",
+            lastName: "",
+            location: "",
+            bio: "",
+            password: "",
+          };
+        },
+        created() {
+          this.fetchProfileData();
+          alert(this.firstName);
+        },
+        methods: {
+          fetchProfileData() {
+            const data = this.profileService.fetchProfileData();
+            if (data) {
+              this.firstName = data.firstName;
+              this.lastName = data.lastName;
+              this.location = data.location;
+              this.bio = data.bio;
+              this.password = data.password;
+              alert("Profile data fetched!");
+              alert(this.firstName);
+            }
+          },
+          updateProfile() {
+            const data = {
+              firstName: this.firstName,
+              lastName: this.lastName,
+              location: this.location,
+              bio: this.bio,
+              password: this.password,
+            };
+
+            this.profileService
+              .updateProfile(data)
+              .then((response) => {
+                if (response) {
+                  alert("Profile updated!");
+                } else {
+                  alert("Failed to update profile.");
+                }
+              })
+              .catch((error) => console.error(error));
+          },
+          logout() {
+            window.location.href = "/vue/loginForm.html";
+          },
+        },
+      };
+    </script>
+     <script type="module" src="./main.js"></script>
+  </body>
+</html>
