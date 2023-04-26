@@ -11,4 +11,19 @@ describe("ProfileService", () => {
     expect(data.bio).toBe("A hard working uniwa student.");
     expect(data.password).toBe("verystrongpass");
   });
+
+  it("updates profile data", async () => {
+    const profileServiceInstance = new ProfileService();
+    const profileData = {
+      firstName: "Nikolaos",
+      lastName: "Sergis",
+      location: "Athens",
+      bio: "Jest is pain but we passed the tests.",
+      password: "newstrongpass",
+    };
+
+    const response = await profileServiceInstance.updateProfile(profileData);
+
+    expect(response).toBe(true);
+  });
 });
