@@ -2,7 +2,8 @@ import ProfileService from "../dependency-injection/ProfileService.js";
 
 describe("ProfileService", () => {
   it("fetches profile data", () => {
-    const data = ProfileService.fetchProfileData();
+    const profileServiceInstance = new ProfileService(); // Create an instance of the ProfileService class
+    const data = profileServiceInstance.fetchProfileData(); // Call the method from the instance
 
     expect(data.firstName).toBe("Nikolaos");
     expect(data.lastName).toBe("Sergis");
