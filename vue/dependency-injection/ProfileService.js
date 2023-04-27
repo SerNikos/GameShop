@@ -8,15 +8,16 @@
  */
 
 export default class ProfileService {
-    fetchProfileData() {
-      return {
-        firstName: "Nikolaos",
-        lastName: "Sergis",
-        location: "Athens",
-        bio: "A hard working uniwa student.",
-        password: "verystrongpass",
-      };
-    }
+  fetchProfileData() {
+    const url = 'http://localhost:8080/api/users/2?fields=firstName,lastName,location,bio,password';
+
+    const data = {};
+    fetch(url)
+      .then(response => response.json())
+      .then(data = response)
+      console.log(data)
+      .catch(error => console.error(error));
+  }
   
     updateProfile(profileData) {
       return new Promise((resolve, reject) => {
@@ -25,5 +26,4 @@ export default class ProfileService {
         }, 1000);
       });
     }
-  }
-  
+}

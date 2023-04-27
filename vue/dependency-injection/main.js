@@ -1,11 +1,11 @@
 import ProfileService from "./ProfileService.js";
 
-const profileService = new ProfileService();
+const profileServiceObject = new ProfileService();
 
-new Vue({
+const app = new Vue({
   el: "#app",
   provide: {
-    profileService,
+    profileServiceObject,
   },
   data() {
     return {
@@ -17,26 +17,18 @@ new Vue({
     };
   },
   created() {
-    this.fetchProfileData();
+    profileServiceObject.fetchProfileData();
   },
   methods: {
     fetchProfileData() {
-      if (this.profileService) {
-        const data = this.profileService.fetchProfileData();
-        if (data) {
-          this.firstName = data.firstName;
-          this.lastName = data.lastName;
-          this.location = data.location;
-          this.bio = data.bio;
-          this.password = data.password;
-          alert("Profile data fetched!");
-          alert(this.firstName);
-          alert(firstName);
-        }
+      const data = profileServiceObject.fetchProfileData();
+      if (data) {
+        profileServiceObject.firstName = data.firstName;
+        profileServiceObject.lastName = data.lastName;
+        profileServiceObject.location = data.location;
+        profileServiceObject.bio = data.bio;
+        profileServiceObject.password = data.password;
       }
-    },
-    logout() {
-      window.location.href = "/vue/loginForm.html";
     },
     updateProfile() {
       const data = {
@@ -47,20 +39,20 @@ new Vue({
         password: this.password,
       };
 
-      if (this.profileService) {
-        this.profileService
-          .updateProfile(data)
-          .then((response) => {
-            if (response) {
-              alert("Profile updated!");
-            } else {
-              alert("Failed to update profile.");
-            }
-          })
-          .catch((error) => console.error(error));
-      } else {
-        console.error("Profile service not available.");
-      }
+      profileServiceObject
+        .updateProfile(data)
+        .then((response) => {
+          if (response) {
+            alert("Profile updated!");
+            console.log(data);
+          } else {
+            alert("Failed to update profile.");
+          }
+        })
+        .catch((error) => console.error(error));
+    },
+    logout() {
+      window.location.href = "/vue/loginForm.html";
     },
   },
 });

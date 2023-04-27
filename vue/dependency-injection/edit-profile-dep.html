@@ -116,7 +116,8 @@
       </header>
 
       <div id="edit-profile-container">
-        <form @submit.prevent="updateProfile">
+        <!-- <form @submit.prevent="updateProfile"> -->
+          <form @submit.prevent="fetchProfileData"> 
           <label for="firstName">First Name:</label>
           <input type="text" id="firstName" v-model="firstName" />
           <br />
@@ -137,62 +138,6 @@
       </div>
     </div>
 
-    <script type="module">
-      import ProfileService from "./profile-service.js";
-      export default {
-        inject: ["profileService"],
-        data() {
-          return {
-            firstName: "",
-            lastName: "",
-            location: "",
-            bio: "",
-            password: "",
-          };
-        },
-        created() {
-          this.fetchProfileData();
-          alert(this.firstName);
-        },
-        methods: {
-          fetchProfileData() {
-            const data = this.profileService.fetchProfileData();
-            if (data) {
-              this.firstName = data.firstName;
-              this.lastName = data.lastName;
-              this.location = data.location;
-              this.bio = data.bio;
-              this.password = data.password;
-              alert("Profile data fetched!");
-              alert(this.firstName);
-            }
-          },
-          updateProfile() {
-            const data = {
-              firstName: this.firstName,
-              lastName: this.lastName,
-              location: this.location,
-              bio: this.bio,
-              password: this.password,
-            };
-
-            this.profileService
-              .updateProfile(data)
-              .then((response) => {
-                if (response) {
-                  alert("Profile updated!");
-                } else {
-                  alert("Failed to update profile.");
-                }
-              })
-              .catch((error) => console.error(error));
-          },
-          logout() {
-            window.location.href = "/vue/loginForm.html";
-          },
-        },
-      };
-    </script>
-     <script type="module" src="./main.js"></script>
+    <script type="module" src="./main.js"> </script>
   </body>
 </html>
