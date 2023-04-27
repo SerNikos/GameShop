@@ -16,9 +16,6 @@ const app = new Vue({
       password: "",
     };
   },
-  created() {
-    profileServiceObject.fetchProfileData();
-  },
   methods: {
     fetchProfileData() {
       const data = profileServiceObject.fetchProfileData();
@@ -30,6 +27,7 @@ const app = new Vue({
         profileServiceObject.password = data.password;
       }
     },
+
     updateProfile() {
       const data = {
         firstName: this.firstName,

@@ -116,8 +116,8 @@
       </header>
 
       <div id="edit-profile-container">
-        <!-- <form @submit.prevent="updateProfile"> -->
-          <form @submit.prevent="fetchProfileData"> 
+        <form @submit.prevent="updateProfile">
+          <!-- <form @submit.prevent="updateProfile">  -->
           <label for="firstName">First Name:</label>
           <input type="text" id="firstName" v-model="firstName" />
           <br />
@@ -134,6 +134,7 @@
           <input type="text" id="password" v-model="password" />
           <br />
           <button type="submit" class="save-changes-btn">Update Profile</button>
+          <button type="button" id="fetch-btn" @click="fetchProfileData" class="save-changes-btn">Fetch</button>
         </form>
       </div>
     </div>
