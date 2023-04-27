@@ -7,19 +7,19 @@
  * easier mocking of the service during testing.
  */
 
+
 export default class ProfileService {
-
   fetchProfileData() {
-    const url = 'http://localhost:8080/api/users/2'; //hardcoded for test
+    const url = 'http://localhost:8080/api/users/5'; // hardcoded for test
 
-    fetch(url)
+    return fetch(url)
       .then(response => response.json())
       .catch(error => console.error(error));
   }
   
   updateProfile(data) {
     // Send updated profile data to API endpoint
-    return fetch("http://localhost:8080/api/users/5", { //hardcoded for test
+    return fetch("http://localhost:8080/api/users/1", { //hardcoded for test
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

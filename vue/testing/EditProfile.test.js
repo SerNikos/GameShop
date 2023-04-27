@@ -1,15 +1,29 @@
 import ProfileService from "../dependency-injection/ProfileService.js";
+import { enableFetchMocks } from 'jest-fetch-mock';
+
+enableFetchMocks();
 
 describe("ProfileService", () => {
-  it("fetches profile data", () => {
-    const profileServiceInstance = new ProfileService(); // Create an instance of the ProfileService class
-    const data = profileServiceInstance.fetchProfileData(); // Call the method from the instance
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
 
-    expect(data.firstName).toBe("Nikolaos");
-    expect(data.lastName).toBe("Sergis");
-    expect(data.location).toBe("Athens");
-    expect(data.bio).toBe("A hard working uniwa student.");
-    expect(data.password).toBe("verystrongpass");
+  it("fetches profile data", async () => {
+    const mockProfileData = {
+      firstName: "Nikos",
+      lastName: "Sergis",
+      location: "NaxosGreece",
+      bio: "GitGud",
+      password: "5678"
+    };
+
+    fetch.mockResponseOnce(JSON.stringify(mockProfileData));
+
+    const profileServiceInstance = new ProfileService(); 
+    const data = await profileServiceInstance.fetchProfileData();
+
+    expect(fetch).toHaveBeenCalledWith('http://localhost:8080/api/users/2');
+    expect(data).toEqual(mockProfileData);
   });
 
   it("updates profile data", async () => {
@@ -22,8 +36,15 @@ describe("ProfileService", () => {
       password: "newstrongpass",
     };
 
+    fetch.mockResponseOnce(JSON.stringify({ success: true }));
+
     const response = await profileServiceInstance.updateProfile(profileData);
 
-    expect(response).toBe(true);
+    expect(fetch).toHaveBeenCalledWith('http://localhost:8080/api/users/5', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(profileData),
+    });
+    expect(response.success).toBe(true);
   });
 });
