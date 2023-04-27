@@ -11,7 +11,12 @@
 
 ### How to setup the app ->
 
-1. Have a mariadb/mysql and php7.4 with composer on your platform
+1. Make sure you have on your platform:
+    - mariadb/mysql php7.4 with composer
+    - php7.4-mysql,
+    - php7.4-mbstring,
+    - php7.4-xml
+    - php7.4-curl
 2. Create a `.env` file with the `.env.example`
 3. Run `composer update` (linux) in the ./api folder
 4. Run `php artisan migrate` (linux) in the ./api folder
