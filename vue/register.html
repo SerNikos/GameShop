@@ -20,8 +20,8 @@
               <input v-model="lastName" type="text" id="last-name" required />
             </div>
             <div class="registration-form__field">
-              <label for="email">Email</label>
-              <input v-model="email" type="email" id="email" required />
+              <label for="bio">Bio</label>
+              <input v-model="bio" type="bio" id="bio" required />
             </div>
             <div class="registration-form__field">
               <label for="password">Password</label>
@@ -36,9 +36,9 @@
               <label for="location">Location</label>
               <select v-model="location" id="location" required>
                 <option value="">Please select a location</option>
-                <option value="New York">Athens</option>
+                <option value="Athens">Athens</option>
                 <option value="Los Angeles">Los Angeles</option>
-                <option value="Chicago">London</option>
+                <option value="London">London</option>
               </select>
             </div>
             <div class="registration-form__field">
@@ -64,20 +64,38 @@
           return {
             firstName: "",
             lastName: "",
-            email: "",
+            bio: "",
             password: "",
             location: "",
           };
         },
         methods: {
           register() {
-          // Validate user input
-          if (this.email === '' || this.password === '') {
-            alert('Please fill in all required fields.');
-            return;
-          }
-          /*we redirect to the homepage*/
-            window.location.href = "homepage.html";
+            // here fetchProfileData() should run but its not implemented so we hard code it 
+            const data = {
+              firstName: this.firstName,
+              lastName: this.lastName,
+              location: this.location,
+              bio: this.bio,
+              password: this.password
+            };
+            // using fetch API we sending a PUT request to the server with the updated data
+            fetch("http://localhost:8080/api/users", {  // Hardcoded to user 1 to test the function
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  alert("You are registered!");
+                  window.location.href = "homepage.html";
+                } else {
+                  alert("Failed to register.");
+                }
+              })
+              .catch((error) => console.error(error));
           },
         },
       });
